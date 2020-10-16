@@ -1,0 +1,22 @@
+﻿@page
+@model Shop.UI.Pages.Checkout.PaymentWhenRecievingModel
+@{
+}
+    <div>
+        <div class="columns">
+            <div class="column is-6">
+
+                <p class="title"> Payment</p>
+                <form method="post">
+                    <div class="field">
+
+                        <button class="button is-success">Submit Payment</button>
+                    </div>
+                </form>
+            </div>
+            <div class="column is-6">
+                <vc:cart view="Default"> </vc:cart>
+            </div>
+        </div>
+
+    </div>

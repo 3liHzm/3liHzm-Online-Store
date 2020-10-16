@@ -1,0 +1,62 @@
+﻿@page
+@model Shop.UI.Pages.Admin.CatagoriesModel
+@{
+}
+
+    <div id="app">
+
+        <div class="columns">
+
+
+
+            <div class="column is-3">
+                <h2 class="title">Catagories</h2>
+                <div class="field">
+                    <div class="control" v-for="catagory in categories" @@click="selectCatagory(catagory)">
+
+                        <p>{{catagory.catagory}}</p>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="column is-6" v-if="selectedCatagory">
+                <table class="table">
+                    <tr @*v-for="(catagory, index) in categories"*@>
+                        <td><input class="input" v-model="selectedCatagory.catagory" /></td>
+                        <td><a class="button has-text-danger" @@click="deleteCatagory(selectedCatagory.id)">Delete Category</a></td>
+                    </tr>
+
+                </table>
+                <a class="button is-info" @@click="UpdateCatagory">
+                    Update Catagory
+                </a>
+            </div>
+
+
+
+
+            <div class="column is-3">
+                <h2 class="title">New Catagory</h2>
+                <div class="field">
+                    <div class="control">
+                        <input class="input" v-model="newCatagory.catagory" />
+                    </div>
+                </div>
+
+
+                <a class="button is-success" @@click="addCatagory">Add</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+@section scripts {
+
+    <script src="~/js/admin/catagories.js"></script>
+}

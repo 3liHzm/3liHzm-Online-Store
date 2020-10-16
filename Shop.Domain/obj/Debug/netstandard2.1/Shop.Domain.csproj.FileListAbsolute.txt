@@ -1,0 +1,8 @@
+C:\Users\dell\source\repos\Shop\Shop.Domain\bin\Debug\netstandard2.1\Shop.Domain.deps.json
+C:\Users\dell\source\repos\Shop\Shop.Domain\bin\Debug\netstandard2.1\Shop.Domain.dll
+C:\Users\dell\source\repos\Shop\Shop.Domain\bin\Debug\netstandard2.1\Shop.Domain.pdb
+C:\Users\dell\source\repos\Shop\Shop.Domain\obj\Debug\netstandard2.1\Shop.Domain.AssemblyInfoInputs.cache
+C:\Users\dell\source\repos\Shop\Shop.Domain\obj\Debug\netstandard2.1\Shop.Domain.AssemblyInfo.cs
+C:\Users\dell\source\repos\Shop\Shop.Domain\obj\Debug\netstandard2.1\Shop.Domain.dll
+C:\Users\dell\source\repos\Shop\Shop.Domain\obj\Debug\netstandard2.1\Shop.Domain.pdb
+C:\Users\dell\source\repos\Shop\Shop.Domain\obj\Debug\netstandard2.1\Shop.Domain.csprojAssemblyReference.cache

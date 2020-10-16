@@ -1,0 +1,20 @@
+﻿@page
+@model Shop.UI.Pages.Checkout.PaymentMethodsModel
+@{
+}
+
+
+<div class="columns">
+    <div class="column is-6">
+
+        <p class="title"> Payment Methodes</p>
+            <div class="field">
+                <a asp-page="/checkout/Payment" class="button is-success">By Card</a>
+                <a asp-page="/checkout/PaymentWhenRecieving" class="button is-success">Paiement when recieving</a>
+                @*<a asp-page="/checkout/ZainCash" class="button is-success">zainCah</a>*@
+           </div>       
+    </div>
+    <div class="column is-6">
+        <vc:cart view="Default"> </vc:cart>
+    </div>
+</div>

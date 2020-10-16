@@ -1,0 +1,13 @@
+C:\Users\dell\source\repos\Shop\Shop.Database\bin\Debug\netcoreapp3.1\Shop.Database.deps.json
+C:\Users\dell\source\repos\Shop\Shop.Database\bin\Debug\netcoreapp3.1\Shop.Database.runtimeconfig.json
+C:\Users\dell\source\repos\Shop\Shop.Database\bin\Debug\netcoreapp3.1\Shop.Database.runtimeconfig.dev.json
+C:\Users\dell\source\repos\Shop\Shop.Database\bin\Debug\netcoreapp3.1\Shop.Database.dll
+C:\Users\dell\source\repos\Shop\Shop.Database\bin\Debug\netcoreapp3.1\Shop.Database.pdb
+C:\Users\dell\source\repos\Shop\Shop.Database\bin\Debug\netcoreapp3.1\Shop.Domain.dll
+C:\Users\dell\source\repos\Shop\Shop.Database\bin\Debug\netcoreapp3.1\Shop.Domain.pdb
+C:\Users\dell\source\repos\Shop\Shop.Database\obj\Debug\netcoreapp3.1\Shop.Database.csprojAssemblyReference.cache
+C:\Users\dell\source\repos\Shop\Shop.Database\obj\Debug\netcoreapp3.1\Shop.Database.AssemblyInfoInputs.cache
+C:\Users\dell\source\repos\Shop\Shop.Database\obj\Debug\netcoreapp3.1\Shop.Database.AssemblyInfo.cs
+C:\Users\dell\source\repos\Shop\Shop.Database\obj\Debug\netcoreapp3.1\Shop.Database.csproj.CopyComplete
+C:\Users\dell\source\repos\Shop\Shop.Database\obj\Debug\netcoreapp3.1\Shop.Database.dll
+C:\Users\dell\source\repos\Shop\Shop.Database\obj\Debug\netcoreapp3.1\Shop.Database.pdb

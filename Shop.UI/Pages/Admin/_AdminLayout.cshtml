@@ -1,0 +1,92 @@
+﻿@inject IAuthorizationService autherService
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Shop.UI</title>
+
+
+    <link href="~/lib/bulma-0.9.0/css/bulma.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/css/site.css" />
+
+
+
+    @*<environment include="Development">
+            <link href="~/lib/bulma-0.9.0/css/bulma.css" rel="stylesheet" />
+
+
+
+        </environment>
+
+        <environment exclude="Production">
+            <link href="~/lib/bulma-0.9.0/css/bulma.min.css" rel="stylesheet" />
+
+            <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        </environment>*@
+
+</head>
+<body>
+    <h3 class="title has-text-centered">Admin Panel</h3>
+
+
+    <div class="container">
+
+        <div class="columns">
+            <div class="column is-3">
+                <div class="menu">
+
+                    @if ((await autherService.AuthorizeAsync(User, "Manager")).Succeeded)
+                    {
+                        <p class="menu-label"> Store menu </p>
+                        <ul class="menu-list">
+                            <li><a asp-page="/Admin/Index">Products</a></li>
+                            <li><a asp-page="/Admin/Orders">Orders</a></li>
+                            <li><a asp-page="/Admin/Stock">Stock</a></li>
+                            <li><a asp-page="/Admin/Catagories">Catagories</a></li>
+                        </ul>
+                    }
+                    @if ((await autherService.AuthorizeAsync(User, "Admin")).Succeeded)
+                    {
+
+                        <p class="menu-label"> Admin menu </p>
+                        <ul class="menu-list">
+                            <li><a asp-page="/Admin/ConfigureUsers">User Config</a></li>
+
+                        </ul>
+                    }
+
+                    <p class="menu-label">  </p>
+                    <ul class="menu-list">
+                        <li><a asp-page="/Index">Back to Home</a></li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="column is-9">
+
+                @RenderBody()
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://kit.fontawesome.com/27ce9fa351.js" crossorigin="anonymous"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

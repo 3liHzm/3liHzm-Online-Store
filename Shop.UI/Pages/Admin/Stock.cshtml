@@ -1,0 +1,71 @@
+﻿@page
+@model StockModel
+@{
+}
+    
+    <div id="app">
+        @*<div>
+            <form  asp-action="Search" asp-controller="StocksController">
+                <input  name="term" type="search" placeholder="Search" aria-label="Search">
+                <button  type="submit">Search</button>
+            </form>
+        </div>*@
+        <div class="columns">
+
+            <div class="column is-3">
+                <table class="table">
+                    <tr v-for="product in products" @@click="selectProduct(product)">
+
+
+                        <td>{{product.name}}</td>
+
+                    </tr>
+
+                </table>
+
+
+            </div>
+
+            <div class="column is-6" v-if="selectedProduct">
+
+                <table class="table">
+                    <tr v-for="(stock, index) in selectedProduct.stock">
+
+                        <td><input class="input" v-model="stock.description" /></td>
+                        <td><input class="input" v-model="stock.qty" /></td>
+                        <td><a class="button has-text-danger" @@click="deleteStock(stock.id, index)">Delete Stock</a></td>
+                    </tr>
+
+                </table>
+                <a class="button is-info" @@click="UpdateStock">
+                    Update Stocks
+                </a>
+            </div>
+
+            <div class="column is-3" v-if="selectedProduct">
+                <h2 class="title">New Stock</h2>
+                <div class="field">
+                    <div class="control">
+                        <input class="input" v-model="newStock.description" />
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input class="input" v-model="newStock.qty" />
+                    </div>
+                </div>
+
+                <a class="button is-success" @@click="addStock">Add</a>
+
+            </div>
+
+
+        </div>
+
+
+    </div> 
+
+@section scripts {
+
+    <script src="~/js/admin/stock.js"></script>
+}

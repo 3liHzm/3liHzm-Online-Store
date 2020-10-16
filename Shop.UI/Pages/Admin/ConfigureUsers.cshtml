@@ -1,0 +1,25 @@
+﻿@page
+@model Shop.UI.Pages.Admin.ConfigureUsersModel
+@{
+}
+
+
+
+<div id="app" class="container">
+
+    <input placeholder="UserName" v-model="newUser.username" />
+    <input type="password" placeholder="password" v-model="newUser.password" />
+    <a class="button is-info" @@click="createUser">Create</a>
+</div>
+
+
+
+@section scripts{
+    @*<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>*@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+
+    <script src="~/js/admin/users.js"></script>
+
+
+}

@@ -1,0 +1,130 @@
+﻿@page
+@model OrdersModel
+@{
+}
+<div id="app">
+    <div v-if="selectedOrder === null">
+        <div class="tabs is-centered">
+            <ul>
+                <li v-bind:class="{'is-active': status === 0}"><a @@click="status = 0">Pending</a></li>
+                <li v-bind:class="{'is-active': status === 1}"><a @@click="status = 1">Packed</a></li>
+                <li v-bind:class="{'is-active': status === 2}"><a @@click="status = 2">Shipped</a></li>
+
+            </ul>
+        </div>
+        <div v-if="orders.length > 0">
+            <p v-for="order in orders">
+                <a @@click="selectOrder(order.id)">{{order.firstName}} {{order.lastName}} - {{order.phoneNumber}} </a>
+            </p>
+        </div>
+
+    </div>
+
+
+
+
+    <div v-if="selectedOrder">
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <button class="button is-info" @@click="updateOrder()">Process</button>
+        <button class="button" @@click="exitOrder()">Exit</button>
+
+        <div class="container .body-invoice">
+            <div class="col-md-12">
+                <div class="invoice">
+                    <!-- begin invoice-company -->
+                    <div class="invoice-company text-inverse f-w-600">
+                        <span class="pull-right hidden-print">
+                            <input type="button" class="button is-info" onclick="window.print()" value=" Print ">
+                        </span>
+                        Company Name, Inc
+                    </div>
+                    <!-- end invoice-company -->
+                    <!-- begin invoice-header -->
+                    <div class="myDivToPrint">
+
+                        <div class="invoice-header">
+                            <div class="invoice-from">
+                                <small>From</small>
+                                <address class="m-t-5 m-b-5">
+                                    <strong class="text-inverse">{{selectedOrder.firstName}} {{selectedOrder.lastName}}</strong><br>
+                                    {{selectedOrder.city}} {{selectedOrder.address1}}<br>
+                                    {{selectedOrder.address2}}<br>
+                                    Phone: {{selectedOrder.phoneNumber}}<br>
+                                </address>
+                            </div>
+                            <div class="invoice-to">
+                                <small>To</small>
+                                <address class="m-t-5 m-b-5">
+                                    <strong class="text-inverse">Company Name</strong><br>
+                                    Street Address<br>
+                                    City, Zip Code<br>
+                                    Phone: (123) 456-7890<br>
+                                    Fax: (123) 456-7890
+                                </address>
+                            </div>
+                            <div class="invoice-date">
+                                <small>Date</small>
+                                <div class="date text-inverse m-t-5">@DateTime.Now.ToString("dd/MM/yyyy")</div>
+                                <div class="date text-inverse m-t-5">@DateTime.Now.ToString("h:mm tt")</div>
+                                <div class="invoice-detail">
+                                    #0000123DSS<br>
+                                    Services Product
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end invoice-header -->
+                        <!-- begin invoice-content -->
+                        <div class="invoice-content">
+                            <!-- begin table-responsive -->
+                            <div class="table-responsive">
+                                <table class="table table-invoice">
+                                    <thead>
+                                        <tr>
+                                            <th>Product DESCRIPTION</th>
+                                            <th class="text-center" width="10%">Unit Price</th>
+                                            <th class="text-center" width="10%">Qty</th>
+                                            <th class="text-right" width="20%">TOTAL</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody v-for="product in selectedOrder.products">
+                                        <tr>
+                                            <td>
+                                                <span class="text-inverse">{{product.name}}</span><br>
+                                                <small> {{product.stockDesc}}</small>
+                                            </td>
+                                            <td class="text-center">${{product.value}}</td>
+                                            <td class="text-center">{{product.qty}}</td>
+                                            <td class="text-right">{{product.tvalue}}</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- end table-responsive -->
+                            <!-- begin invoice-price -->
+                            <div class="invoice-price">
+
+                                <div class="invoice-price-right">
+                                    <small>TOTAL</small> <span>{{selectedOrder.totalValue}}</span>
+                                </div>
+                            </div>
+                            <!-- end invoice-price -->
+                        </div>
+                        <!-- end invoice-content -->
+                        <!-- begin invoice-note -->
+                    </div>
+
+                    <!-- end invoice-footer -->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+@section scripts{
+    <script src="~/js/admin/orders.js"></script>
+
+}

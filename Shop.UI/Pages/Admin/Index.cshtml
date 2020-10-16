@@ -1,0 +1,140 @@
+﻿@page
+@model IndexModel
+@{
+}
+
+
+    <div id="app" class="container">
+
+
+        <div class="navbar-item has-addons" style="float:right;">
+            <div class="control">
+                <input class="input is-rounded is-normal is-size-7-mobile" size="10" name="term" type="text" placeholder="Search...."  v-model="term">
+            </div>
+            <div class="control">
+                <button type="submit" class="button is-info is-rounded is-normal is-size-7-mobile"  @@click="serchProduct"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+ 
+
+
+
+
+        <div v-if="!editing && !selectedProduct">
+            <button class="button is-info" @@click="newProduct(); getCategories();">New Product</button>
+
+            <table class="table">
+                <tr>
+                    <th>Id</th>
+                    <th>Product</th>
+                    <th>Price</th>
+
+                <tr v-for="(product, index) in products">
+                    <td>{{product.id}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.value}}</td>
+
+                    <td><a @@click="editProduct(product.id, index)">Edit</a></td>
+                    <td><a @@click="deleteProduct(product.id, index)">Delete</a></td>
+                    <td><a @@click="selectProduct(product);">Stock</a></td>
+                </tr>
+            </table>
+
+
+        </div>
+        <div class="column is-6" v-if="selectedProduct">
+
+            <table class="table">
+                <tr v-for="(stock, index) in selectedProduct.stock">
+
+                    <td><input class="input" v-model="stock.description" /></td>
+                    <td><input class="input" v-model="stock.qty" /></td>
+                    <td><a class="button has-text-danger" @@click="deleteStock(stock.id, index)">Delete Stock</a></td>
+                </tr>
+
+            </table>
+            <a class="button is-info" @@click="UpdateStock">
+                Update Stocks
+            </a>
+        </div>
+
+        <div class="column is-3" v-if="selectedProduct">
+            <h2 class="title">New Stock</h2>
+            <div class="field">
+                <div class="control">
+                    <input class="input" v-model="newStock.description" />
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input" v-model="newStock.qty" />
+                </div>
+            </div>
+
+            <a class="button is-success" @@click="addStock">Add</a>
+            <button class="button is-danger" @@click="cancel">cancel</button>
+
+        </div>
+
+
+
+
+
+        <div v-if="editing">
+
+            <div class="field">
+                <label class="label">Product Category</label>
+                <div class="select">
+                    <select v-model="productModel.CatagoryId">
+
+                        <option v-for="catagory in categories" :value="catagory.id">{{catagory.catagory}}</option>
+
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Product Name</label>
+                <div class="control">
+                    <input class="input" v-model="productModel.Name" />
+                </div>
+
+            </div>
+            <div class="field">
+                <label class="label">Description</label>
+                <textarea class="textarea" v-model="productModel.Description"> </textarea>
+
+            </div>
+            <div class="field">
+                <label class="label">Price</label>
+                <div class="control">
+                    <input class="input" v-model="productModel.Value" />
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label class="control-label"></label>
+
+                <div>
+                    <input type="file" id="file" ref="file" accept="image/*" @*v-model="productModel.File"*@ v-on:change="handleFileUpload()" />
+                </div>
+
+
+            </div>
+
+            <button class="button is-success" @@click="postProdutc" v-if="!productModel.id">Creat product</button>
+            <button class="button is-info" @@click="updateProdutc" v-else>Update product</button>
+            <button class="button is-danger" @@click="cancel">cancel</button>
+        </div>
+
+    </div>
+
+
+
+@section scripts{
+
+
+    <script src="~/js/admin/Products.js"></script>
+   
+}

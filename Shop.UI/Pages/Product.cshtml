@@ -1,0 +1,89 @@
+﻿@page "{name}"
+@model Shop.UI.Pages.ProductModel
+@{
+    
+}
+
+<div class="hero">
+    <div class="hero-body">
+        <div class="container">
+
+            <div class="columns">
+                <div class="column is-6">
+                    <figure class="image">
+
+        
+
+                        <img src="~/images/@Model.Product.ImgUrl" alt="Placeholder image" style="width: 60%; height:55%" />
+                       
+                        <p class="title"> @Model.Product.Value</p>
+
+                    </figure>
+
+                </div>
+                <div class="column is-6">
+                    <section>
+                        
+                            <p class="title"> @Model.Product.Name</p>
+                            <p class="subtitle"> @Model.Product.Description</p>
+                        
+                            <footer>
+                                <form method="post">
+
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            <label class="label">Stock</label>
+                                        </div>
+                                        <div class="field-body">
+                                            <div class="field is-narrow">
+                                                <div class="control">
+                                                    <div class="select is-fullwidth">
+                                                        <select asp-for="CartViewModel.StockId">
+                                                            @foreach (var s in Model.Product.Stock)
+                                                            {
+                                                                bool disabled = s.Qty <= 0;
+
+                                                                <option value="@s.Id" disabled="@disabled">@s.Description</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            <label class="label">Qty</label>
+                                        </div>
+                                        <div class="field-body">
+                                            <div class="field is-narrow">
+                                                <div class="control">
+                                                    <input class="input" type="number" min="1" asp-for="CartViewModel.Qty" value="1" />
+
+                                                </div>
+                                                <p class="help is-danger"></p>
+                                            </div>
+                                        </div>
+                                    </div>                       
+                                    <div class="field is-horizontal">
+                                        <div class="field-label is-normal">
+                                            
+                                        </div>
+                                        <div class="field-body">
+                                            <div class="field is-narrow">
+                                                <div class="control">
+                                                    <button class="button is-info" type="submit">Add To Cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                </form>
+
+                            </footer>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
