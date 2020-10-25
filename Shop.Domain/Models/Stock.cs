@@ -15,4 +15,4 @@ namespace Shop.Domain.Models
         public ICollection<OrderStock> OrderStocks { get; set; }
 
     }
-}
+}                                                                      

@@ -16,54 +16,58 @@
                 {
 
                  <div class="column is-3-desktop is-4-tablet is-6-mobile">
-                        <a asp-page="Product" asp-route-name="@i.Name.Replace(" ", "--")">
 
-                            <div class="card is-size-6-mobile">
-                                <div class="card-image">
-                                    <figure>
+                           
 
-                                        <img src="~/images/@i.ImgUrl" alt="Placeholder image" style="width: 80%; height:75%" />
+                                    <a asp-page="Product" asp-route-name="@i.Name.Replace(" ", "--")">
+
+                                        <div class="card" style="height:100%">
+                                        <div class="card-image">
+                                            <figure>
+
+                                                <img src="~/images/@i.ImgUrl" alt="Placeholder image" style="width: 80%; height:75%" />
 
 
-                                    </figure>
-                                </div>
-                                <div class="card-content">
-                                    @{
-                                        string cssClass = "";
-                                        string msg = "";
-                                        if (i.StockCount == 0)
-                                        {
-                                            cssClass = "is-paddingless has-text-centered is-danger";
-                                            msg = "Out Of Stock";
-                                        }
-                                        else if (i.StockCount <= 5)
-                                        {
-                                            cssClass = "is-paddingless has-text-centered is-warning";
-                                            msg = "Low on Stock";
-                                        }
-                                    }
-                                    @if (i.StockCount <= 5)
-                                    {
-                                        <div class="notification @cssClass">
-                                            @msg
+                                            </figure>
                                         </div>
-                                    }
-                                    <p class="title is-size-4-desktop is-size-6-mobile">@i.Name  @i.Value </p>
-                                    @if (@i.Description.Length >= 40)
-                                    {
-                                        <p class="subtitle is-size-5-desktop is-size-7-mobile">@i.Description.Substring(0, 39)...</p>
-                                    }
-                                    else
-                                    {
-                                        <p class="subtitle">@i.Description </p>
-                                    }
+                                        <div class="card-content">
+                                            @{
+                                                string cssClass = "";
+                                                string msg = "";
+                                                if (i.StockCount == 0)
+                                                {
+                                                    cssClass = "is-paddingless has-text-centered is-danger";
+                                                    msg = "Out Of Stock";
+                                                }
+                                                else if (i.StockCount <= 5)
+                                                {
+                                                    cssClass = "is-paddingless has-text-centered is-warning";
+                                                    msg = "Low on Stock";
+                                                }
+                                            }
+                                            @if (i.StockCount <= 5)
+                                            {
+                                                <div class="notification @cssClass">
+                                                    @msg
+                                                </div>
+                                            }
+                                            <p class="title is-size-4-desktop is-size-6-mobile">@i.Name  @i.Value </p>
+                                            @if (@i.Description.Length >= 40)
+                                            {
+                                                <p class="subtitle is-size-5-desktop is-size-7-mobile">@i.Description.Substring(0, 39)...</p>
+                                            }
+                                            else
+                                            {
+                                                <p class="subtitle">@i.Description </p>
+                                            }
 
 
-                                </div>
-                            </div>
+                                        </div>
+                                    </div>
                          
 
-                        </a>
+                                </a>
+                             
                     </div>
 
                 }

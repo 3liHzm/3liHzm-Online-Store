@@ -36,6 +36,10 @@
     <ProjectReference Include="..\Shop.Database\Shop.Database.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\gallery\" />
+  </ItemGroup>
+
 
 
 </Project>

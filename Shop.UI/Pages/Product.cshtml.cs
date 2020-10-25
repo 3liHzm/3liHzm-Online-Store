@@ -39,7 +39,8 @@ namespace Shop.UI.Pages
             }
 
             else
-            {    //todo add warning msg
+            {   
+                //todo add warning msg
                 return RedirectToPage("Product");
             }
 

@@ -39,7 +39,9 @@ namespace Shop.Database
 
         public TResult GetProductByName<TResult>(string name, Func<Product, TResult> selector)
         {
-            return _ctx.Products.Include(s => s.Stock).Where(s => s.Name == name)
+            return _ctx.Products.Include(s => s.Stock)
+                .Include(s=>s.ImgGallary)
+                .Where(s => s.Name == name)
                 .Select(selector).FirstOrDefault();
         }
 
@@ -69,9 +71,25 @@ namespace Shop.Database
             
         }
 
+        public Task<int> UpdateGallery(IEnumerable<ImgGallary> imgGallary)
+        {
+            var gallaries = _ctx.ProductImgGallary.Select(s=>s).Where(s => s.ProductId == imgGallary.FirstOrDefault().ProductId);
+            _ctx.ProductImgGallary.RemoveRange(gallaries);
+            _ctx.ProductImgGallary.AddRange(imgGallary);
+
+            return _ctx.SaveChangesAsync();
+        }
+
         public Task<int> UpdatProduct(Product product)
         {
             _ctx.Products.Update(product);
+            return _ctx.SaveChangesAsync();
+        }
+
+        public Task<int> UploadGallery(ImgGallary imgGallary)
+        {
+            _ctx.ProductImgGallary.Add(imgGallary);
+
             return _ctx.SaveChangesAsync();
         }
     }

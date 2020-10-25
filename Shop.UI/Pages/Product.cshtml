@@ -1,56 +1,72 @@
 ﻿@page "{name}"
 @model Shop.UI.Pages.ProductModel
 @{
-    
+
 }
 
 <div class="hero">
     <div class="hero-body">
+
         <div class="container">
 
+
             <div class="columns">
+
                 <div class="column is-6">
-                    <figure class="image">
 
-        
+                    <div class="slideshow-container">
+                        <div class="mySlides fade">
 
-                        <img src="~/images/@Model.Product.ImgUrl" alt="Placeholder image" style="width: 60%; height:55%" />
-                       
-                        <p class="title"> @Model.Product.Value</p>
+                            <img src="~/images/@Model.Product.ImgUrl" style="width:100%">
+                        </div>
+                        @foreach (var img in Model.Product.Gallery)
+                        {
+                            <div class="mySlides fade">
+                                <img src="~/gallery/@img.GallaryImgUrl" style="width:100%">
+                            </div>
+                        }
 
-                    </figure>
+                        <a class="prev" onclick="plusSlides(-1)" style="color:deepskyblue;">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)" style="color:deepskyblue;">&#10095;</a>
 
+                    </div>
+
+                   
                 </div>
                 <div class="column is-6">
                     <section>
-                        
-                            <p class="title"> @Model.Product.Name</p>
-                            <p class="subtitle"> @Model.Product.Description</p>
-                        
-                            <footer>
-                                <form method="post">
 
-                                    <div class="field is-horizontal">
-                                        <div class="field-label is-normal">
-                                            <label class="label">Stock</label>
-                                        </div>
-                                        <div class="field-body">
-                                            <div class="field is-narrow">
-                                                <div class="control">
-                                                    <div class="select is-fullwidth">
-                                                        <select asp-for="CartViewModel.StockId">
-                                                            @foreach (var s in Model.Product.Stock)
-                                                            {
-                                                                bool disabled = s.Qty <= 0;
+                        <p class="title"> @Model.Product.Name</p>
+                        <p class="subtitle"> @Model.Product.Description</p>
+                        <p class="subtitle has-text-weight-bold"> @Model.Product.Value</p>
 
-                                                                <option value="@s.Id" disabled="@disabled">@s.Description</option>
-                                                            }
-                                                        </select>
-                                                    </div>
+                        <footer>
+                            <form method="post">
+
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Stock</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field is-narrow">
+                                            <div class="control">
+                                                <div class="select is-fullwidth">
+                                                    <select asp-for="CartViewModel.StockId">
+                                                        @foreach (var s in Model.Product.Stock)
+                                                        {
+                                                            bool disabled = s.Qty <= 0;
+
+                                                            <option value="@s.Id" disabled="@disabled">@s.Description</option>
+                                                        }
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                                @if (Model.Product.Stock.Sum(x => x.Qty) > 0)
+                                {
                                     <div class="field is-horizontal">
                                         <div class="field-label is-normal">
                                             <label class="label">Qty</label>
@@ -58,32 +74,66 @@
                                         <div class="field-body">
                                             <div class="field is-narrow">
                                                 <div class="control">
-                                                    <input class="input" type="number" min="1" asp-for="CartViewModel.Qty" value="1" />
-
+                                                    <input class="input" type="number" min="1" asp-for="CartViewModel.Qty" value="1" max="@Model.Product.Stock.Sum(x => x.Qty)" />
                                                 </div>
                                                 <p class="help is-danger"></p>
                                             </div>
                                         </div>
-                                    </div>                       
+                                    </div>
+
+
                                     <div class="field is-horizontal">
                                         <div class="field-label is-normal">
-                                            
+
                                         </div>
                                         <div class="field-body">
                                             <div class="field is-narrow">
                                                 <div class="control">
+
+
                                                     <button class="button is-info" type="submit">Add To Cart</button>
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                   
-                                </form>
+                                }
 
-                            </footer>
+                            </form>
+
+                        </footer>
                     </section>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+   <script>
+       var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+ // var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  //for (i = 0; i < dots.length; i++) {
+  //    dots[i].className = dots[i].className.replace(" active", "");
+  //}
+  slides[slideIndex-1].style.display = "block";  
+  //dots[slideIndex-1].className += " active";
+}
+   </script>

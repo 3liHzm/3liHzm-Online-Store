@@ -228,6 +228,26 @@ namespace Shop.Database.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Shop.Domain.Models.ImgGallary", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("GallaryImgUrl")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImgGallary");
+                });
+
             modelBuilder.Entity("Shop.Domain.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -416,6 +436,15 @@ namespace Shop.Database.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Shop.Domain.Models.ImgGallary", b =>
+                {
+                    b.HasOne("Shop.Domain.Models.Product", "Product")
+                        .WithMany("ImgGallary")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

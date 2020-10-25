@@ -117,7 +117,16 @@
                 <label class="control-label"></label>
 
                 <div>
-                    <input type="file" id="file" ref="file" accept="image/*" @*v-model="productModel.File"*@ v-on:change="handleFileUpload()" />
+                    <label>
+                        Cover Image
+                        <input type="file" id="file" ref="file" accept="image/*" @*v-model="productModel.File"*@ v-on:change="handleFileUpload()" />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        Product Galaray
+                        <input type="file" id="files" accept="image/*" ref="files" multiple v-on:change="handleFilesUpload()" />
+                    </label>
                 </div>
 
 

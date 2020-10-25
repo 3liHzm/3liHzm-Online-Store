@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -34,20 +36,36 @@ namespace Shop.Application.ProductsAdmin
 
 
             var product = new Product
-            {
-
+            {             
                 Name = request.Name,
                 Description = request.Description,
                 Value = request.Value,
                 ImgUrl = request.File.FileName,
                 //Tooo
-                CategoryId = request.CatagoryId
+                CategoryId = request.CatagoryId,
 
-                };
+            };
 
-           if(await _productManager.CreatProduct(product) <= 0)
+
+            if (await _productManager.CreatProduct(product) <= 0)
             {
                 throw new Exception("Faild To Creat Product");
+            }
+
+            if (request.Files != null)
+            {
+                foreach (var img in request.Files)
+                {
+                    string uploads = Path.Combine(_hosting.WebRootPath, @"gallery");
+                    string fullPath = Path.Combine(uploads, img.FileName);
+                    img.CopyTo(new FileStream(fullPath, FileMode.Create));
+                    var imgGallery = new ImgGallary
+                    {
+                        GallaryImgUrl = img.FileName,
+                        ProductId = product.Id
+                    };
+                    await _productManager.UploadGallery(imgGallery);
+                }
             }
 
             return new Response
@@ -66,12 +84,14 @@ namespace Shop.Application.ProductsAdmin
 
         public class Request
         {
+            
             public string Name { get; set; }
             public string Description { get; set; }
             public decimal Value { get; set; }
             public int CatagoryId { get; set; }
             // public string ImgUrl { get; set; }
             public IFormFile File { get; set; }
+            public IEnumerable<IFormFile> Files { get; set; }
         }
 
         public class Response

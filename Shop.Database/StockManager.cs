@@ -39,6 +39,10 @@ namespace Shop.Database
 
         public bool EnoughStock(int stockId, int qty)
             {
+                if(stockId == 0)
+                {
+                    return false;
+                }
                 return _ctx.Stock.FirstOrDefault(s => s.Id == stockId).Qty>=qty;
             }
 

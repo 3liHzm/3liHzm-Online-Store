@@ -38,6 +38,11 @@ namespace Shop.Application.Products
                     Id = x.Id,
                     Description = x.Description,
                     Qty = x.Qty,
+                }),
+                Gallery = s.ImgGallary.Select(x => new GalleryViewModel
+                {
+                    Id = x.Id,
+                    GallaryImgUrl = x.GallaryImgUrl
                 })
 
             });
@@ -51,6 +56,7 @@ namespace Shop.Application.Products
             public string ImgUrl { get; set; }
             public string Value { get; set; }
             public IEnumerable<StockViewModel> Stock { get; set; }
+            public IEnumerable<GalleryViewModel> Gallery { get; set; }
         }
 
         public class StockViewModel
@@ -59,6 +65,12 @@ namespace Shop.Application.Products
             public string Description { get; set; }
             public int Qty { get; set; }
 
+
+        }     
+        public class GalleryViewModel
+        {
+            public int Id { get; set; }
+            public string GallaryImgUrl { get; set; }
 
         }
     }

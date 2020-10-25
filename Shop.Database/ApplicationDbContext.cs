@@ -20,6 +20,7 @@ namespace Shop.Database
         public DbSet<Catagories> Categories { get; set; } 
         public DbSet<OrderStock> OrderStocks { get; set; }
         public DbSet<StockOnHold> StockOnHolds { get; set; }
+        public DbSet<ImgGallary> ProductImgGallary { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) //we override to give orderproduct class a primary key so it have two keys

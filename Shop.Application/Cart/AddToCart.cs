@@ -26,13 +26,10 @@ namespace Shop.Application.Cart
 
         public async Task<bool> Do(Request request)
         {
-            //IStockManager stockManager = new StockManager(_ctx);
-
+            
             if(!_stockManager.EnoughStock(request.StockId, request.Qty))
             {
-                
                 return false;
-
                 //notEnough stock
             }
 

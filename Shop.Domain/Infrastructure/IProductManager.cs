@@ -8,6 +8,8 @@ namespace Shop.Domain.Infrastructure
     public interface IProductManager
     {
         Task<int> CreatProduct(Product product);
+        Task<int> UploadGallery(ImgGallary imgGallary);
+        Task<int> UpdateGallery(IEnumerable<ImgGallary> imgGallary);
         Task<int> UpdatProduct(Product product);
         Task<int> DeleteProduct(int id);
         public IEnumerable<TResult> Search<TResult>(string term, Func<Product, TResult> selector);

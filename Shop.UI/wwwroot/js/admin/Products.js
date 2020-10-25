@@ -4,6 +4,7 @@
 
         term:"",
         file: '',
+        files: '',
             editing: false,
             objectIndex: 0,
             loading: false,
@@ -113,19 +114,31 @@
                 });
         },
         handleFileUpload() {
-            this.file = this.$refs.file.files[0];;
+            this.file = this.$refs.file.files[0];
+          
+        },
+
+        handleFilesUpload() {
+            
+            this.files = this.$refs.files.files;
         },
         postProdutc() {
            
 
             let formData = new FormData();
 
-            formData.append('id', this.productModel.id);
+            formData.append('Id', this.productModel.id);
             formData.append('CatagoryId', this.productModel.CatagoryId);
             formData.append('Name', this.productModel.Name);
             formData.append('Description', this.productModel.Description);
             formData.append('Value', this.productModel.Value);
             formData.append('File', this.file);
+
+            for (var i = 0; i < this.files.length; i++) {
+                let file = this.files[i];
+
+                formData.append('Files', file);
+            }
          
             this.loading = true;
 
@@ -155,6 +168,12 @@
             formData.append('Description', this.productModel.Description);
             formData.append('Value', this.productModel.Value);
             formData.append('File', this.file);
+
+            for (var i = 0; i < this.files.length; i++) {
+                let file = this.files[i];
+
+                formData.append('Files', file);
+            }
 
             this.loading = true;
             axios.put('/products/', formData/*this.productModel*/)

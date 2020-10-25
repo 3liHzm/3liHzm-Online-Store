@@ -20,7 +20,7 @@ namespace Shop.Application.Products
 
         public IEnumerable<ProductViewModel> Do(int catagoryId)
         {
-
+                        
             return _productManager.GetProductsByCatagory(catagoryId, s => new ProductViewModel //we ganna brig it from db than put it in the viwemodel? igus
             {
                 Name = s.Name,

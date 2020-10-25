@@ -24,7 +24,7 @@ namespace Shop.Application.ProductsAdmin
             });
 
 
-
+                                                               
         }
         public class ProductViewModel
         {
